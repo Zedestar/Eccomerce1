@@ -1,0 +1,57 @@
+{% extends 'store/main.html' %}
+
+
+{% load static %}
+
+    {% block title%}
+        store
+    {% endblock title %}
+
+
+    {% block content %}
+
+        <div class="row">
+            {% for product in products %}
+
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-2">
+
+                    <img src="{{product.imageURL}}" alt="No image" class="thumbnail">
+
+                    <div class="box-element product">
+
+                        <h6><strong>{{product.name}}</strong></h6>
+                        <hr>
+                        <buttonc data-product="{{product.id}}" data-action="add" class="btn btn-sm btn-outline-secondary add-btn update-cart">Add to cart</buttonc>
+                        <a href="{% url 'store:view_item' product.id %}" class="btn btn-sm btn-outline-success">View</a>
+                        <h6 style="float: right;">{{product.price|floatformat:2}}</h6>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+            <div class="pagination">
+
+                {% if products.has_previous %}
+                    <p>jaman jaman</p>
+                    <a href="?page=1" >first</a>
+                    <a href="?page={{products.previous_page_number}}">previoua</a>
+
+                {% endif %}
+
+                    <span>
+                        The {{products.number}} page of the {{products.paginator.num_pages}}
+                    </span>
+
+                {% if products.has_next %}
+                    <a href="?page={{products.next_page_number}}">next</a>
+                    <a href="?page={{products.paginator.num_pages}}">last</a>
+                {% endif %}
+                
+                
+            </div>
+            
+        </div>
+
+    {% endblock content %}

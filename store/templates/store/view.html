@@ -1,0 +1,27 @@
+{% extends 'store/main.html' %}
+
+{% load static %}
+
+{% block title %}
+    {{item.name}}
+{% endblock title %}
+
+
+
+{% block content %}
+
+    <div class="box-element product">
+
+        <h6><strong>{{item.name}}</strong></h6>
+        <hr>
+        <img src="{{item.imageURL}}" alt="There is no Image to show" style="width: 70%; height: 70vh;">
+        <br>
+        <br>
+        <buttonc data-product="{{item.id}}" data-action="add" class="btn btn-sm btn-outline-secondary add-btn update-cart">Add to cart</buttonc>
+        <a href="" class="btn btn-sm btn-outline-primary">Buy</a>
+        <a href="{% url 'store:store' %}" class="btn btn-sm btn-outline-secondary">back</a>
+       
+
+    </div>
+
+{% endblock content %}
